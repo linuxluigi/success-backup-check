@@ -1,5 +1,5 @@
 import argparse
-import success_backup_check
+from success_backup_check import run
 from success_backup_check import __version__
 
 
@@ -24,9 +24,8 @@ def main(args=None):
 
     parser = get_parser()
     args = parser.parse_args(args)
+    run.start()
 
-    # Put your main script logic here
-    print('No action defined for success_backup_check module!')
 
 
 if __name__ == '__main__':

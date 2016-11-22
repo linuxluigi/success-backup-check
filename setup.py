@@ -27,7 +27,7 @@ setup(
     version=version,
     author='Steffen.Exler@gmail.com',
     author_email='Steffen Exler',
-    url='',
+    url='https://github.com/linuxluigi/success-backup-check',
     description='A short description for your project.',
     long_description=codecs.open('README.rst', 'rb', 'utf8').read(),
 
@@ -44,6 +44,10 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Topic :: Software Development :: Libraries',
     ],
+
+    entry_points={
+        "console_scripts": ['success_backup_check = success_backup_check.success_backup_check:start']
+    },
 
     # Packages and dependencies
     package_dir={'': 'src'},

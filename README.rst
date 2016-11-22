@@ -1,15 +1,24 @@
-.. These are the Travis-CI and Coveralls badges for your repository. Replace
-   your *github_repository* and uncomment these lines by removing the leading
-   two dots.
+install
 
-.. .. image:: https://travis-ci.org/*github_repository*.svg?branch=master
-    :target: https://travis-ci.org/*github_repository*
+```bash
+    pip3 install git+git://github.com/linuxluigi/success-backup-check.git
+```
 
-.. .. image:: https://coveralls.io/repos/github/*github_repository*/badge.svg?branch=master
-    :target: https://coveralls.io/github/*github_repository*?branch=master
+/etc/success_backup_check.conf
 
+[Server]
+Host: smtp.example.com
+Port: 465
+Username: sou@example.com
+Password: password
 
-You are seeing this description because the package owner is lazy and did not
-provide a detailed description for its project ;-)
+[Mail]
+From = from@example.com
+To = to@example.com
 
-Since you are here, please help with the success-backup-check's documentation!
+[Time]
+days = 3
+
+[BackupDirs]
+VeryImportant = /path/to/backup/
+VeryImportentToo = /another/path/Backup/

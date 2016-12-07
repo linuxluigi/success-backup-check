@@ -1,6 +1,9 @@
+from os import path
+
 from success_backup_check.read_config import readConfig
 from success_backup_check.check_backup import check_backup
-from  success_backup_check.send_mail import sendMail
+from success_backup_check.send_mail import sendMail
+from success_backup_check.archiv_files import archiv_files
 
 def start():
     '''
@@ -32,3 +35,7 @@ def start():
                 conf['Server']['Port']
             )
             print("mail was send for %s" % key)
+        archiv_files(
+            value,
+            path.join(conf['Server']['ArchivDir'], key)
+        )

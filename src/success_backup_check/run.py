@@ -9,9 +9,11 @@ def start():
 
     '''
 
+    print("read config")
     # load config
     conf = readConfig()
 
+    print("test every backup dir")
     # test every backup dir
     BackupDirs = dict(conf.items('BackupDirs'))
 
@@ -29,3 +31,4 @@ def start():
                 conf['Server']['Host'],
                 conf['Server']['Port']
             )
+            print("mail was send for %s" % key)

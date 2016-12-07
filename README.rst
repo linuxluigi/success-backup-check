@@ -4,6 +4,11 @@ install
     pip3 install git+git://github.com/linuxluigi/success-backup-check.git
 ```
 
+usage
+```bash
+    success-backup-check
+```
+
 /etc/success_backup_check.conf
 
 [Server]

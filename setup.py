@@ -53,6 +53,7 @@ setup(
     package_dir={'': 'src'},
     packages=find_packages('src'),
     install_requires=[
+        "sendgrid >= 3.6.3",
     ],
     extras_require={
         'dev': [

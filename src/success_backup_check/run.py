@@ -29,10 +29,7 @@ def start():
                 conf['Mail']['To'],
                 msg,
                 "Warning: Backup is out of Date!",
-                conf['Server']['Username'],
-                conf['Server']['Password'],
-                conf['Server']['Host'],
-                conf['Server']['Port']
+                conf['Mail']['ApiKey']
             )
             print("mail was send for %s" % key)
         archiv_files(

@@ -11,15 +11,10 @@ usage
 
 /etc/success_backup_check.conf
 
-[Server]
-Host: smtp.example.com
-Port: 465
-Username: sou@example.com
-Password: password
-
 [Mail]
 From = from@example.com
 To = to@example.com
+ApiKey = YourSendGridApiKey
 
 [Time]
 days = 3

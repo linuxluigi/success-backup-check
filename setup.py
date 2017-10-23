@@ -29,7 +29,7 @@ setup(
     author_email='Steffen Exler',
     url='https://github.com/linuxluigi/success-backup-check',
     description='A short description for your project.',
-    long_description=codecs.open('README.rst', 'rb', 'utf8').read(),
+    long_description=codecs.open('README.md', 'rb', 'utf8').read(),
 
     # Classifiers (see https://pypi.python.org/pypi?%3Aaction=list_classifiers)
     classifiers=[

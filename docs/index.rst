@@ -4,8 +4,6 @@ Welcome to success-backup-check's documentation!
 
 .. include:: warning.rst
 
-.. include:: ../README.rst
-
 .. toctree::
    :maxdepth: 2
 

@@ -13,13 +13,18 @@ def send_mail(mail_from, mail_to, subject, message, api_key=None):
         message:        The Message witch should be deliver
         api_key:        Sendgrid API Key
     """
+
     sg = sendgrid.SendGridAPIClient(apikey=api_key)
     from_email = Email(mail_from)
-    subject = subject
     to_email = Email(mail_to)
     content = Content("text/plain", message)
     mail = Mail(from_email, subject, to_email, content)
-    sg.client.mail.send.post(request_body=mail.get())
+    response = sg.client.mail.send.post(request_body=mail.get())
+
+    logging.info("sendgrid mail was send")
+    logging.info("statuscode: %s" % response.status_code)
+    logging.info("body: %s" % response.body)
+    logging.info("headers: %s" % response.headers)
 
     logging.info('email was send from %s to %s about %s' % (mail_from, mail_to, subject))
 

@@ -1,6 +1,6 @@
-import os.path
-import time
+import os
 import logging
+from datetime import datetime, timedelta
 
 
 def check_backup(directory, days):
@@ -10,16 +10,44 @@ def check_backup(directory, days):
             directory: Directory witch will be checked
             days: modify time in days
 
-        Returns: True --> the dir is out of date
-                 False --> everything is fine
+        Returns: False --> the dir is out of date
+                 True --> everything is fine
     """
 
-    # convert days into seconds
-    time_max_delay = time.time() - 86400 * float(days)
+    logging.debug('check %s if up to date' % directory)
 
-    if os.path.getmtime(directory) < time_max_delay:
+    # var for the newest folder in directory
+    newest_item = None
+
+    # search for the newest backup in directory
+    for sub_dir in os.listdir(directory):
+
+        # convert the folder name into a datetime object
+        try:
+            sub_dir_datetime = datetime.strptime(sub_dir, "%Y-%m-%d_%H:%M")
+        except ValueError:
+            sub_dir_datetime = None
+
+        # if the folder was converted into a datetime object, check for the newest one
+        if sub_dir_datetime:
+
+            if not newest_item:
+                newest_item = sub_dir_datetime
+
+            if sub_dir_datetime > newest_item:
+                newest_item = sub_dir_datetime
+
+    # no directory was backup
+    if newest_item is None:
+        logging.warning('there is no backup @ %s' % directory)
+        return False
+
+    # current time minus the day delay
+    max_backup_age = datetime.now() - timedelta(days=int(days))
+
+    if max_backup_age > newest_item:
         logging.warning('%s is outdated' % directory)
-        return True
+        return False
     else:
         logging.info('%s is fine' % directory)
-        return False
+        return True

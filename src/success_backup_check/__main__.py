@@ -1,7 +1,8 @@
 import argparse
-from success_backup_check import __version__, read_config, set_logging, hdd_smart_test, check_backup, send_mail, \
-    archiv_files
-from os import path
+from success_backup_check import __version__, read_config, set_logging, hdd_smart_test, check_backup, \
+    archiv_files, send_mail
+from os import path, makedirs
+import logging
 
 
 def get_parser():
@@ -47,24 +48,41 @@ def main(args=None):
     backup_dirs = dict(conf.items('BackupDirs'))
 
     for key, value in backup_dirs.items():
-        if check_backup.check_backup(value, conf['Time']['days']):
-            msg = 'Backup "%s" is out of date, please check if the backup run correctly!' % key
 
-            send_mail.send_mail(
-                conf['Mail']['From'],
-                conf['Mail']['To'],
-                msg,
-                "Warning: Backup is out of Date!",
-                conf['Mail']['ApiKey']
-            )
-            print("mail was send for %s" % key)
+        backup_path = path.join(conf['Server']['ArchivDir'], key)
 
-        if conf['Server']['mode'] == "active":
-            archiv_files.archiv_files(
-                value,
-                path.join(conf['Server']['ArchivDir'], key),
-                conf['Server']['file_typ']
-        )
+        # check if backup_path exists & create it when necessary
+        if not path.exists(backup_path):
+            makedirs(backup_path)
+
+        # check if backup_path is a directory
+        if not path.isdir(backup_path) & path.exists(backup_path):
+            waring_text = '%s no directory or not exists' % backup_path
+            logging.warning(waring_text)
+            send_mail.send_simple_message(
+                conf,
+                waring_text,
+                waring_text)
+
+        else:
+            # move the backup files
+            if conf['Server']['mode'] == "active":
+                archiv_files.archiv_files(
+                    value,
+                    backup_path,
+                    conf['Server']['file_typ']
+                )
+
+            # check if the backup directory is outdated
+            if not check_backup.check_backup(backup_path, conf['Time']['days']):
+                msg = 'Backup "%s" is out of date, please check if the backup run correctly!' % key
+
+                send_mail.send_simple_message(
+                    conf,
+                    "Warning: Backup is out of Date!",
+                    msg)
+
+                logging.warning("Mail was send reason: %s is out of date" % key)
 
     # HDD SMART test
     hdd_smart_test.main(conf)

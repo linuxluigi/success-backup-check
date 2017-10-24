@@ -12,3 +12,8 @@ database on the server is to old.
     :alt: function overview
     :align: center
     :scale: 50%
+
+.. figure:: _static/BackupCheck.png
+    :alt: Backup check
+    :align: center
+    :scale: 100%

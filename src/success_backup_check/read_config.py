@@ -1,23 +1,32 @@
 from pathlib import Path
 import configparser
+import logging
 
-def readConfig():
-    '''
-    Read the config '/etc/success_backup_check.conf' and return it's content
+
+def main(config_path):
+    """
+    Read the config from the file at config_path and return it's content
+    Args:
+        config_path (object): str complete path of the config file
+
     Returns:
-        Confgig content
+        config content
 
-    '''
-    ConfigPath = "/etc/success_backup_check.conf"
-    configFile = Path(ConfigPath)
+    """
+    config_file = Path(config_path)
 
     # check if config exists
-    if configFile.is_file() == False:
-        return "Missing config '%s", ConfigPath
+    if not config_file.is_file():
+        error_msg = ('Config file is missing @ %s' % config_path)
+        logging.warning(error_msg)
+        return error_msg
 
     # read config
-    Config = configparser.ConfigParser()
-    Config.read(ConfigPath)
+    config = configparser.ConfigParser()
+    config.read(config_path)
 
-    return Config
+    return config
 
+
+if __name__ == '__main__':
+    main()

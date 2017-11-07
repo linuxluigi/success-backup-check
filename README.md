@@ -55,7 +55,7 @@ Or an example in crontab. (change your Python version)
 
 ## Config Example
 
-- **todo:** update example conf after release 0.2rc1 in the meantime use the docs
+Quick Example, for detail instruction read the documentation.
 http://success-backup-check.readthedocs.io/en/latest/config.html
 
 File: ```/etc/success_backup_check.conf```
@@ -71,6 +71,7 @@ File: ```/etc/success_backup_check.conf```
     [Server]
     ArchivDir = /srv/backup/daily_backup/
     mode = active
+    file_typ = MDB
 
     [BackupDirs]
     MyDatabaseDir = /home/user/daily-db

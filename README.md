@@ -24,7 +24,7 @@ http://success-backup-check.readthedocs.io/en/latest/
 
 Debian / Ubuntu::
 
-    $ sudo apt-get install smartmontools
+    $ sudo apt-get install smartmontools python3-pip git
 
 Mac - Brew::
 

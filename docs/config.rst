@@ -2,6 +2,8 @@
 Config
 ======
 
+Config file path: ```/etc/success_backup_check.conf```
+
 Complete Example::
 
     [Mail]

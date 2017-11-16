@@ -46,7 +46,7 @@ setup(
     ],
 
     entry_points={
-        "console_scripts": ['success_backup_check = success_backup_check.run:start']
+        "console_scripts": ['success_backup_check = success_backup_check.__main__:main']
     },
 
     # Packages and dependencies

@@ -13,6 +13,8 @@ matrix:
      python: 3.4
    - env: TOXENV=py35
      python: 3.5
+   - env: TOXENV=py356
+     python: 3.6
 
 # Package installation
 install:

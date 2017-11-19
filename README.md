@@ -1,5 +1,7 @@
 # Succes-Backup-Check
 
+[![Build Status](https://travis-ci.org/linuxluigi/success-backup-check.svg?branch=master)](https://travis-ci.org/linuxluigi/success-backup-check)
+
 Move user files on a server from a place where the user has write rights & move it to an archive or backup folder, where
 to user has no read or write access.
 

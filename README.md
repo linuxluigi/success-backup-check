@@ -1,6 +1,7 @@
 # Succes-Backup-Check
 
 [![Build Status](https://travis-ci.org/linuxluigi/success-backup-check.svg?branch=master)](https://travis-ci.org/linuxluigi/success-backup-check)
+[![Coverage Status](https://coveralls.io/repos/github/linuxluigi/success-backup-check/badge.svg?branch=master)](https://coveralls.io/github/linuxluigi/success-backup-check?branch=master)
 
 Move user files on a server from a place where the user has write rights & move it to an archive or backup folder, where
 to user has no read or write access.

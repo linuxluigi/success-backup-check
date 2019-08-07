@@ -27,6 +27,10 @@ Complete Example::
     log_level = WARNING
     log_file = /var/log/succes_backup_check.log
 
+    [TelegramBot]
+    bot = BOT_ID
+    chat = CHAT_ID
+
 Mail
 ^^^^
 
@@ -82,3 +86,12 @@ Logging
     [Logging]
     log_level = WARNING
     log_file = /var/log/succes_backup_check.log
+
+TelegramBot
+^^^^^^^^^^^
+
+Todo::
+
+    [TelegramBot]
+    bot = BOT_ID
+    chat = CHAT_ID

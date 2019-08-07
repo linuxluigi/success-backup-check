@@ -13,7 +13,7 @@ Linux
 
 Debian / Ubuntu::
 
-    $ sudo apt-get install smartmontools
+    $ sudo apt-get install smartmontools python3-pip
 
 Mac
 ^^^
@@ -30,17 +30,28 @@ success-backup-check can be installed using pip::
     $ sudo python3 -m pip install git+git://github.com/linuxluigi/success-backup-check.git
 
 This command will fetch the archive and its dependencies from the internet and
-install them. 
+install them.
 
 Or download it from git and execute::
 
+    $ sudo apt-get install libffi-dev build-essential libssl-dev python3-dev
     $ git clone git@github.com:linuxluigi/success-backup-check.git
     $ cd success-backup-check
-    $ python setup.py install --user
+    $ python3 setup.py install --user
 
 You might prefer to install it system-wide. In this case, skip the ``--user``
 option and execute as superuser by prepending the command with ``sudo``.
 
+
+Autoboot
+--------
+
+To start on boot enable the service::
+
+    $ sudo systemctl daemon-reload
+    $ sudo systemctl enable backup.service
+    $ sudo systemctl start backup.service
+    $ sudo systemctl status backup.service
 
 Troubleshoot
 ------------

@@ -42,6 +42,8 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Software Development :: Libraries',
     ],
 
@@ -53,13 +55,18 @@ setup(
     package_dir={'': 'src'},
     packages=find_packages('src'),
     install_requires=[
-        "sendgrid >= 5.3.0",
+        "sendgrid>=6.0.5, <7",
+        "python-telegram-bot>=11.1.0, <12",
+        "requests>=2.22.0, <3",
     ],
     extras_require={
         'dev': [
             'python-boilerplate[dev]',
         ],
     },
+
+    # extra files
+    data_files=[('/lib/systemd/system/', ['scripts/backup.service'])],
 
     # Other configurations
     zip_safe=False,

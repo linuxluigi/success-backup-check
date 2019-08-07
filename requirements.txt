@@ -1,1 +1,4 @@
 -e .
+sendgrid>=6.0.5, <7                # https://pypi.org/project/sendgrid/
+python-telegram-bot>=11.1.0, <12   # https://pypi.org/project/python-telegram-bot/
+requests>=2.22.0, < 3              # https://pypi.org/project/requests/

@@ -114,8 +114,11 @@ def main(config):
     # Send alert email
     if len(failed_drives) > 0:
         send_alert_sendmail(text, failed_drives, config)
+        return '{}\n{}'.format(text, failed_drives)
     else:
-        logging.info('HDD SMART Test: all devices are fine')
+        output = 'HDD SMART Test: all devices are fine'
+        logging.info(output)
+        return output
 
 
 if __name__ == '__main__':

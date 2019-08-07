@@ -1,6 +1,6 @@
-import sendgrid
-from sendgrid.helpers.mail import *
 import logging
+
+from sendgrid import SendGridAPIClient
 
 
 def send_mail(mail_from, mail_to, subject, message, api_key=None):
@@ -14,12 +14,35 @@ def send_mail(mail_from, mail_to, subject, message, api_key=None):
         api_key:        Sendgrid API Key
     """
 
-    sg = sendgrid.SendGridAPIClient(apikey=api_key)
-    from_email = Email(mail_from)
-    to_email = Email(mail_to)
-    content = Content("text/plain", message)
-    mail = Mail(from_email, subject, to_email, content)
-    response = sg.client.mail.send.post(request_body=mail.get())
+    message = {
+        'personalizations': [
+            {
+                'to': [
+                    {
+                        'email': mail_to
+                    }
+                ],
+                'subject': subject
+            }
+        ],
+        'from': {
+            'email': mail_from
+        },
+        'content': [
+            {
+                'type': 'text/plain',
+                'value': message
+            }
+        ]
+    }
+    try:
+        sg = SendGridAPIClient(api_key)
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        logging.error(e.message)
 
     logging.info("sendgrid mail was send")
     logging.info("statuscode: %s" % response.status_code)
